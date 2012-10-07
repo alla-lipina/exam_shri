@@ -1,14 +1,20 @@
 .header {
-  width: 972px;
-  margin: auto;
+  width: 970px;
+  margin: 20px auto;
   text-align: center;
 }
-.timetable {
-  width: 972px;
-  height: 502px;
-  margin: 5% auto;
+.b-timetable {
+  position: relative;
+  width: 970px;
+  height: 552px;
+  margin: 30px auto;
+  background: #aaa;
 }
-.timetable_table {
+.b-timetable_weeks {
+  text-align: center;
+  background: #ddd;
+}
+.b-timetable_table {
   width: 970px;
   height: 500px;
   background: #eee;

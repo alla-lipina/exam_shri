@@ -1,0 +1,19 @@
+:focus {
+  outline:0;
+}
+.add-lecture {
+  cursor: default;
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  font-size: 100%;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  width: 100px;
+  height: 30px;
+}
+.add-lecture:hover {
+  background: #474747;
+}
