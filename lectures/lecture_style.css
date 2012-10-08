@@ -17,3 +17,56 @@
 .add-lecture:hover {
   background: #474747;
 }
+.lectures {
+  display: block;
+  background: green;
+  margin-top: 10px;
+}
+/* ---------- Block Lecture ---------- */
+.none {
+    display: none;
+}
+.b-lecture {
+  position: absolute;
+  left: 350px;
+  top: 80px;
+  width: 300px;
+  min-height: 200px;
+  background: #eee;
+  border: 1px solid black;
+}
+.b-lecture_day {
+  min-height: 20px;
+  padding: 5px;
+  background: red;
+}
+.b-lecture_time {
+
+}
+.b-lecture_theme {
+
+}
+.b-lecture_thesis {
+
+}
+.b-lecture_presenter {
+
+}
+.b-lecture_presentation {
+
+}
+.b-lecture_footer {
+  padding: 5px;
+  background: #ddd;
+}
+.b-lecture_f-status {
+  color: #666;
+  padding: 5px;
+}
+.b-lecture_f-close {
+  float: right;
+  cursor: default;
+  color: #666;
+  padding:1px 5px;
+}
+
