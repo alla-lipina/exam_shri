@@ -8,19 +8,49 @@
 </head>
 <body>
   <h1 class="header">Расписание ШРИ</h1>
-
   <div class="b-timetable">
-
     <script id="timetable-template" type="text/x-handlebars-template">
       {{#each weeks}}
       <div class="b-timetable_row">
         <div class="b-timetable_row-name">{{this.week}}</div>
           {{#each this.days}}
-          <div class="b-timetable_day">{{days}}</div>
+          <div class="b-timetable_day {{this.class}}">{{this.caption}}</div>
           {{/each}}
       </div>
       {{/each}}
     </script>
+
+
+    <script id="lecture-thumb-template" type="text/x-handlebars-template">
+    <div class="lectures" id={{id}}> 
+     {{time}} {{theme}}
+     </div>
+    </script>
+
+
+    <script type="text/x-handlebars-template" id="day-template">
+     {{#each lectures}}
+     <div>
+         {{this.theme}}
+     </div>
+     {{/each}} 
+    </script>
+
+
+   <!--<script id="lecture-form-template" type="text/x-handlebars-template">-->
+   <div id='edit-lecture-form' style="display:none">
+    <form> 
+      <input type="hidden" name="id" value=""/>
+      <input type="text" name="date" value=""/>
+      <input type="text" name="time" value=""/>
+      <input type="text" name="theme" value=""/>
+      <input type="text" name="thesis" value=""/>
+      <input type="text" name="presenter" value=""/>
+      <input type="text" name="presentation" value=""/>
+      <input type="button" class='submit'>
+    </form>
+  </div>
+    <!--</script>-->
 
     <div class="b-timetable_button-add">Добавить лекцию</div>
     <div class="b-timetable_button-export">Экспортировать</div>
@@ -31,48 +61,39 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
   <script src="https://github.com/douglascrockford/JSON-js/blob/master/json2.js"></script> 
   <script src="http://cloud.github.com/downloads/wycats/handlebars.js/handlebars-1.0.rc.1.js"></script>
-  <!--<script src="lectures/lecture_script.js"></script>-->
+  <script src="lectures.js"></script> 
+  <script src="grid.js"> </script>
 
   <script>
-    (function() {
-      var context = 
-        {
-          weeks: [ 
-            { week: 'welcome',
-              days: [ '10/09', '11/09', '12/09', '13/09', '14/09', '15/09', '16/09'],
-            },
+   GRID.init($('#timetable-template'));
+   LECTURES.init()
+   LECTURES.load($('#lecture-thumb-template'))
 
-            { week: '1 week',
-              days: [ '17/09', '18/09', '19/09', '20/09', '21/09', '22/09', '23/09'],
-            },
+/*
 
-            { week: '2 week',
-              days: [ '24/09', '25/09', '26/09', '27/09', '28/09', '29/09', '30/09'],
-            },
+      $(".b-timetable_button-add").click( function () { 
+        var data = 
+          { 
+            id : +new Date(), 
+            date : "15/09", 
+            time : "19:00", 
+            theme : "your theme", 
+            thesis : "thesis", 
+            presenter : "who speak", 
+            presentation : "link"
+          },
 
-            { week: '3 week',
-              days: [ '1/10', '2/10', '3/10', '4/10', '5/10', '6/10', '7/10'],
-            },
+        template = Handlebars.compile( $('#lecture-template').html() );
 
-            { week: '4 week',
-              days: [ '8/10', '9/10', '10/10', '11/10', '12/10', '13/10', '14/10'],
-            },
+        $('div.b-lecture').append( template(context) );
 
-            { week: 'exam week',
-              days: [ '15/10', '16/10', '17/10', '18/10', '19/10', '20/10', '21/10'],
-            },
+       });*/
 
-          ]
-        },
-
-      template = Handlebars.compile( $('#timetable-template').html() );
-
-      $('div.b-timetable').append( template(context) );
-
-    })();
-
-    /*LECTURES.open();
-    LECTURES.edit();*/
+/*
+    LECTURES.open();
+    LECTURES.edit();
+    LECTURES.showD()
+*/
   </script>
 
 </body>

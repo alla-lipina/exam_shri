@@ -42,6 +42,7 @@
     background: #00ABA9;
     color: white;
     padding: 5px 10px;
+    cursor: pointer;
 }
 .b-timetable_button-export {
     position: absolute;
