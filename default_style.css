@@ -2,27 +2,62 @@
   width: 970px;
   margin: 20px auto;
   text-align: center;
+  color: #00ABA9;
 }
 .b-timetable {
   position: relative;
   width: 970px;
-  height: 552px;
+  min-height: 700px;
   margin: 30px auto;
-  background: #aaa;
-}
-.b-timetable_weeks {
-  text-align: center;
-  background: #ddd;
-}
-.b-timetable_table {
-  width: 970px;
-  height: 500px;
   background: #eee;
-  border-top: 1px solid #aaa;
-  border-left: 1px solid #aaa;
 }
-td {
-  border-right: 1px solid #aaa;
-  border-bottom: 1px solid #aaa;
-  width: 120px;
+.b-timetable_row {
+  text-align: center;
+  width: 970px;
+  height: 100px;
+}
+.b-timetable_row-name {
+    width: 100px;
+  
+    height: 100px;
+    display: inline-block;
+    vertical-align: top;
+    background: #00ABA9;
+    border-left: 1px solid #00ABA9;
+    border-right: 1px solid #00ABA9;
+}
+.b-timetable_day {
+    display: inline-block;
+    vertical-align: top;
+    width: 110px;
+    height: 94px;
+    border: 1px solid #00ABA9;
+    margin: 2px;
+    background: white;
+}
+.b-timetable_button-add {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #00ABA9;
+    color: white;
+    padding: 5px 10px;
+}
+.b-timetable_button-export {
+    position: absolute;
+    bottom: 50px;
+    left: 10px;
+    padding: 5px 10px;
+    border: 1px solid #00ABA9;
+    color: #00ABA9;
+    background: white;
+}
+.b-timetable_button-import {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    border: 1px solid #00ABA9;
+    color: #00ABA9;
+    background: white;
 }
