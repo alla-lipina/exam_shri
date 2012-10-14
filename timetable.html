@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <title>Exam Yandex</title>
+  <link type="text/css"  rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
   <link rel="stylesheet" href="style.css" />
-  <link type="text/css" href="jquery.jscrollpane.css" rel="stylesheet" media="all" />
+  <link type="text/css" href="jquery.jscrollpane.css" rel="stylesheet" media="all" />  
+  <link type="text/css" href="jquery.ui.timepicker.css" rel="stylesheet" media="all" />  
+  <script type="text/javascript" src="modernizr.js"></script>
+  
 
 </head>
 <body>
@@ -13,14 +17,13 @@
 
   <div class="b-timetable">
     <script id="timetable-template" type="text/x-handlebars-template">
+    <div class="b-timetable_delete-all">удалить всё</div>
       {{#each weeks}}
       <div class="b-timetable_row">
         <div class="b-timetable_row-name">{{this.week}}</div>
           {{#each this.days}}
-
           <div class="b-timetable_day scroll-pane {{this.class}}">
-
-              <span class="b-timetable_date">{{this.caption}}</span>
+              <span class="b-timetable_date caption">{{this.caption}}</span>
           </div>
 
           {{/each}}
@@ -29,7 +32,7 @@
     </script>
 
     <script id="lecture-thumb-template" type="text/x-handlebars-template">
-    <div class="lectures color" id="{{id}}" data-time="{{time}}"> 
+    <div class="lectures" id="{{id}}" data-time="{{time}}"> 
      <span class="lectures_time">{{time}} - </span> <span class="lectures_theme">{{theme}}</span>
      </div>
     </script>
@@ -60,11 +63,10 @@
         </span>
         <form class='b-popup_form'>
           <input type="hidden" name="id" value="" class="field"/>
-          <input type="hidden" name="date" value="" class="field"/>
           <span class="b-popup_text">Дата:</span>
-          <input type="text" name="date" value="" class="b-popup_input field"/>
+          <input type="text" name="date" value="" class="b-popup_input field input-date"/>
           <span class="b-popup_text time">Время:</span>
-          <input type="text" name="time" value="" class="b-popup_input field"/>
+          <input type="text" name="time" value="" class="b-popup_input field input-time"/>
           <br>
           <span class="b-popup_text">Тема:</span>
           <input type="text" name="theme" value="" class="b-popup_input width field"/>
@@ -77,6 +79,19 @@
           <br>
           <span class="b-popup_text">Презентация:</span>
           <input type="text" name="presentation" value="" class="b-popup_input width field"/>
+          <br>
+          <input type="button" value="СОХРАНИТЬ" class='b-popup_save submit'/>
+        </form>
+      </div>
+    </div>
+
+    <div id='import-form' class='b-popup_overlay' style="display:none">
+      <div class="b-popup_import">
+        <span class='b-popup_header'>
+          <img src="cancel.png" alt="cancel" class="b-popup_img-cancel"/>
+        </span>
+        <form class='b-popup_form'>
+          <input type="text" placeholder="json представление расписания" name="json" value="" class="b-popup_input width field"/>
           <br>
           <input type="button" value="СОХРАНИТЬ" class='b-popup_save submit'/>
         </form>
@@ -97,24 +112,36 @@
   <script src="json2.js"></script>
   <script src="lectures.js"></script>
   <script src="grid.js"></script>
+  <script src="lecture_cell.js"></script>
+  <script src="jquery.ui.timepicker.js"></script>
 
   <script type="text/javascript" src="jquery.mousewheel.js"></script>
   <script src="jquery.jscrollpane.min.js"></script>
 
-  
+  <script src="jquery.validate.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="jquery.ui.datepicker.validation.min.js"></script>
+  <script src="validation.js"></script>
+
 
   <script>
 
    GRID.init($('#timetable-template'));
    LECTURES.init();
    LECTURES.load($('#lecture-thumb-template'));
-  </script>
-
-  <script type="text/javascript">
-  $(function()
-    {
-      $('.scroll-pane').jScrollPane();
-    });
+   $('.scroll-pane').jScrollPane(); //todo remove this
+   
+   $(".input-date").datepicker({ 
+    dateFormat: 'dd-mm',
+    beforeShow: function(input, obj) {
+      $(input).after($(input).datepicker('widget'));
+    }
+    }).val();;
+   $(".input-time").timepicker({ 
+    beforeShow: function(input, obj) {
+      $(input).after($(input).datepicker('widget'));
+    }
+    }).val();;
+/*    VALIDATION.init()*/
   </script>
 
 </body>

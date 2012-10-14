@@ -2,6 +2,9 @@ body {
   font: 16px Helvetica;
   background: #eee;
 }
+* {
+  outline: 0;
+}
 .header {
   width: 970px;
   margin: 20px auto;
@@ -14,6 +17,23 @@ body {
   min-height: 700px;
   margin: 30px auto;
   background: #eee;
+}
+.b-timetable_delete-all {
+  position: absolute;
+  top: -40px;
+  right: 0px;
+  width: 125px;
+  height: 25px;
+  line-height: 25px;
+  color: #00ABA9;
+  background: url('delete.png') no-repeat 125px center;
+  border: 1px solid #00ABA9;
+  padding: 0 10px;
+}
+.b-timetable_delete-all:hover {
+  color: #FA7474;
+  background: url('delete-hover.png') no-repeat 125px center;
+  border: 1px solid #FA7474;
 }
 .b-timetable_row {
   text-align: center;
@@ -65,9 +85,10 @@ body {
     background: #00ABA9;
     border: 1px solid #00ABA9;
     color: white;
-    padding: 5px 10px;
+    padding: 8px 10px;
     cursor: pointer;
     margin: 10px 0px;
+    text-align: center;
 }
 .b-timetable_button-export {
     bottom: 20px;
@@ -146,6 +167,8 @@ body {
     background: #eee;
     border: none;
     padding: 2px;
+    margin: 5px 0 5px 0;
+    width: 118px;
 }
 .b-popup_input.width {
     width: 318px;
@@ -160,6 +183,21 @@ body {
     padding: 5px 10px;
     cursor: pointer;
     font-size: 14px;
+    line-height: 14px;
+}
+
+.b-popup_import {
+    width: 600px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    left: 50%;
+    width: 600px;
+    margin-left: -300px;
+    background: white;
+    border: 1px solid #00ABA9;
+    box-shadow: 5px 5px 15px 5px #555;
+    background: white;
 }
 
 .b-day-lecture {
@@ -251,3 +289,19 @@ body {
   color: white;
   background: #00ABA9;
 }
+
+/* Styles for plugin DataPicker */
+.ui-helper-hidden-accessible {
+  clip: auto;
+  }
+div.ui-datepicker, div.ui-timepicker {
+  font-size:10px;
+}
+#ui-datepicker-div {
+  left: 175px !important;
+  top: 103px !important;
+}
+
+
+
+

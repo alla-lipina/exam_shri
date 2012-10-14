@@ -10,12 +10,11 @@ var LECTURES = (function () {
       });
       $('.b-timetable_day.work-day .jspPane').live('click',function() {
         show(this);
-        $('.scroll-pane').jScrollPane();
       });
       $('div.b-day-lecture_delete').live('click', function() {
         delete_lecture($(this));
       });
-      $('.b-day-lecture button').live('click', function() {
+      $('.b-day-lecture_button').live('click', function() {
         update(this)
       });
       $('.b-day-lecture_img-cancel').live('click', function() {
@@ -24,10 +23,13 @@ var LECTURES = (function () {
       $('.b-popup_img-cancel').live('click', function() {
         $(this).parents('.b-popup_overlay').hide()
       })
+      $('.b-timetable_delete-all').click(function(){
+        delete_all();
+      })
       $('.b-timetable_button-export').click(function(){
         export_lectures();
       })
-      $('.b-timetable_button-export').click(function(){
+      $('.b-timetable_button-import').click(function(){
         import_lectures();
       })
       init = null;
@@ -35,23 +37,10 @@ var LECTURES = (function () {
 
     load = function load () {
        for (var i = 0; i < localStorage.length; i++) {
-          render_lecture_thumb(JSON.parse(localStorage.getItem(localStorage.key(i))));
+          CELL_MANAGER.update(JSON.parse(localStorage.getItem(localStorage.key(i))));
         }
     }
 
-    render_lecture_thumb = function (data, old_date) {
-      $('#'+data.id).remove();
-      if ($('.' + old_date).children('.lectures').length == 0){
-        $('.' + old_date).removeClass('work-day')
-      }
-      compiled_template = Handlebars.compile($("#lecture-thumb-template").html());
-      elem = $("."+ data.date).find(">:first-child");
-      while (elem.next() && elem.next().attr('data-time') < data.time){
-        elem = elem.next();
-      }
-      elem.after(compiled_template(data));
-      $("."+ data.date).addClass('work-day')
-    }
 
     edit = function edit(data) {
       data = data || 
@@ -84,7 +73,7 @@ var LECTURES = (function () {
           result[$(this).attr('name')] = $(this).val();
        })
       localStorage.setItem("lecture-" + result.id, JSON.stringify(result));
-      render_lecture_thumb(result, $('#edit-lecture-form input[type=hidden][name=date]').val())
+      CELL_MANAGER.update(result)
     }
 
     show = function show(day) {
@@ -93,16 +82,26 @@ var LECTURES = (function () {
            return JSON.parse(localStorage.getItem("lecture-" + $(this).attr('id')));
         });
       template = Handlebars.compile($('#day-template').html());
-      $('div.view-day').append( template({lectures : lectures}));
+      $('div.view-day').append(template({lectures : lectures}));
       $('div.view-day').show()
+      $('div.view-day .scroll-pane').jScrollPane();
     }
 
     delete_lecture = function delete_lecture(elem) {
       id = elem.attr('data-lecture-id');
       localStorage.removeItem("lecture-" + id);
-      $("#" + id).remove();
       elem.parent().remove();
+      $('.view-day').hide().children().remove()
+      CELL_MANAGER.remove({id : id})
     }
+
+    delete_all = function() {
+      if (confirm("Вы уверены, что хотите удалить все записи?")){
+        localStorage.clear();
+        CELL_MANAGER.clear();
+      }
+    }
+
 
     export_lectures = function export_lectures(data){
       content = ""
@@ -112,8 +111,9 @@ var LECTURES = (function () {
       uriContent = "data:application/octet-stream," + encodeURIComponent(content);
       newWindow=window.open(uriContent, 'neuesDokument');
     }
-
     import_lectures = function import_lectures() {
+      alert('sdf')
+        $('#import-form').show()
 
     }
 
