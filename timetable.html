@@ -3,97 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <title>Exam Yandex</title>
-  <link rel="stylesheet" href="default_style.css" />
-  <link rel="stylesheet" href="lectures/lecture_style.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link type="text/css" href="jquery.jscrollpane.css" rel="stylesheet" media="all" />
+
 </head>
 <body>
+
   <h1 class="header">Расписание ШРИ</h1>
+
   <div class="b-timetable">
     <script id="timetable-template" type="text/x-handlebars-template">
       {{#each weeks}}
       <div class="b-timetable_row">
         <div class="b-timetable_row-name">{{this.week}}</div>
           {{#each this.days}}
-          <div class="b-timetable_day {{this.class}}">{{this.caption}}</div>
+
+          <div class="b-timetable_day scroll-pane {{this.class}}">
+
+              <span class="b-timetable_date">{{this.caption}}</span>
+          </div>
+
           {{/each}}
       </div>
       {{/each}}
     </script>
 
-
     <script id="lecture-thumb-template" type="text/x-handlebars-template">
-    <div class="lectures" id={{id}}> 
-     {{time}} {{theme}}
+    <div class="lectures color" id="{{id}}" data-time="{{time}}"> 
+     <span class="lectures_time">{{time}} - </span> <span class="lectures_theme">{{theme}}</span>
      </div>
     </script>
 
-
-    <script type="text/x-handlebars-template" id="day-template">
-     {{#each lectures}}
-     <div>
-         {{this.theme}}
+    <script id="day-template" type="text/x-handlebars-template">
+    <div class="b-popup_day-lecture">
+      <span class="b-day-lecture_header"><img src="cancel.png" alt="cancel" class="b-day-lecture_img-cancel"/> {{this.date}}</span>
+      <div class="b-day-lecture_lectures scroll-pane">
+      {{#each lectures}}
+      <div class="b-day-lecture">
+        <div class="b-day-lecture_delete" data-lecture-id="{{this.id}}"></div>
+        <div class="b-day-lecture_time">{{this.time}}</div>
+        <div class="b-day-lecture_theme">{{this.theme}}</div>
+        <div class="b-day-lecture_thesis">{{this.thesis}}</div>
+        <div class="b-day-lecture_presenter">{{this.presenter}}</div>
+        <div class="b-day-lecture_presentation">{{this.presentation}}</div>
+        <button class="b-day-lecture_button" data-lecture-id="{{this.id}}">edit</button>
+      </div>
+      {{/each}} 
+      </div>
      </div>
-     {{/each}} 
     </script>
 
+    <div id='edit-lecture-form' class='b-popup_overlay' style="display:none">
+      <div class="b-popup_edit-lecture">
+        <span class='b-popup_header'>
+          <img src="cancel.png" alt="cancel" class="b-popup_img-cancel"/>
+        </span>
+        <form class='b-popup_form'>
+          <input type="hidden" name="id" value="" class="field"/>
+          <input type="hidden" name="date" value="" class="field"/>
+          <span class="b-popup_text">Дата:</span>
+          <input type="text" name="date" value="" class="b-popup_input field"/>
+          <span class="b-popup_text time">Время:</span>
+          <input type="text" name="time" value="" class="b-popup_input field"/>
+          <br>
+          <span class="b-popup_text">Тема:</span>
+          <input type="text" name="theme" value="" class="b-popup_input width field"/>
+          <br>
+          <span class="b-popup_text">Тезисы:</span>
+          <textarea rows="10" cols="45" name="thesis" class="b-popup_input width field"></textarea>
+          <br>
+          <span class="b-popup_text">Докладчик:</span>
+          <input type="text" name="presenter" value="" class="b-popup_input width field"/>
+          <br>
+          <span class="b-popup_text">Презентация:</span>
+          <input type="text" name="presentation" value="" class="b-popup_input width field"/>
+          <br>
+          <input type="button" value="СОХРАНИТЬ" class='b-popup_save submit'/>
+        </form>
+      </div>
+    </div>
 
-   <!--<script id="lecture-form-template" type="text/x-handlebars-template">-->
-   <div id='edit-lecture-form' style="display:none">
-    <form> 
-      <input type="hidden" name="id" value=""/>
-      <input type="text" name="date" value=""/>
-      <input type="text" name="time" value=""/>
-      <input type="text" name="theme" value=""/>
-      <input type="text" name="thesis" value=""/>
-      <input type="text" name="presenter" value=""/>
-      <input type="text" name="presentation" value=""/>
-      <input type="button" class='submit'>
-    </form>
-  </div>
-    <!--</script>-->
+    <div class='b-popup_overlay view-day' style="display:none"></div>
 
     <div class="b-timetable_button-add">Добавить лекцию</div>
     <div class="b-timetable_button-export">Экспортировать</div>
     <div class="b-timetable_button-import">Импортировать</div>
   </div>
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script src="jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
-  <script src="https://github.com/douglascrockford/JSON-js/blob/master/json2.js"></script> 
   <script src="http://cloud.github.com/downloads/wycats/handlebars.js/handlebars-1.0.rc.1.js"></script>
-  <script src="lectures.js"></script> 
-  <script src="grid.js"> </script>
+
+  <script src="json2.js"></script>
+  <script src="lectures.js"></script>
+  <script src="grid.js"></script>
+
+  <script type="text/javascript" src="jquery.mousewheel.js"></script>
+  <script src="jquery.jscrollpane.min.js"></script>
+
+  
 
   <script>
+
    GRID.init($('#timetable-template'));
-   LECTURES.init()
-   LECTURES.load($('#lecture-thumb-template'))
+   LECTURES.init();
+   LECTURES.load($('#lecture-thumb-template'));
+  </script>
 
-/*
-
-      $(".b-timetable_button-add").click( function () { 
-        var data = 
-          { 
-            id : +new Date(), 
-            date : "15/09", 
-            time : "19:00", 
-            theme : "your theme", 
-            thesis : "thesis", 
-            presenter : "who speak", 
-            presentation : "link"
-          },
-
-        template = Handlebars.compile( $('#lecture-template').html() );
-
-        $('div.b-lecture').append( template(context) );
-
-       });*/
-
-/*
-    LECTURES.open();
-    LECTURES.edit();
-    LECTURES.showD()
-*/
+  <script type="text/javascript">
+  $(function()
+    {
+      $('.scroll-pane').jScrollPane();
+    });
   </script>
 
 </body>

@@ -1,0 +1,253 @@
+body {
+  font: 16px Helvetica;
+  background: #eee;
+}
+.header {
+  width: 970px;
+  margin: 20px auto;
+  text-align: center;
+  color: #00ABA9;
+}
+.b-timetable {
+  position: relative;
+  width: 970px;
+  min-height: 700px;
+  margin: 30px auto;
+  background: #eee;
+}
+.b-timetable_row {
+  text-align: center;
+  width: 970px;
+  height: 100px;
+}
+.b-timetable_row-name {
+    width: 76px;
+  
+    height: 80px;
+    display: inline-block;
+    background: #00ABA9;
+    border-left: 1px solid #00ABA9;
+    border-right: 1px solid #00ABA9;
+    color: white;
+    padding: 10px 3px;
+    font-size: 20px;
+    vertical-align: bottom;
+}
+.b-timetable_row-name:first-letter {
+    font-size: 40px
+}
+.b-timetable_day {
+    display: inline-block;
+    vertical-align: top;
+    width: 117px;
+    height: 94px;
+    border: 1px solid #00ABA9;
+    margin: 1px;
+    background: white;
+    overflow-y: scroll;
+}
+.work-day {
+    background: #00ABA9;
+}
+.work-day span {
+    color:white;
+}
+.b-timetable_date {
+  display: block;
+  font-size: 13px;
+  padding: 3px 5px;
+  color: #aaa;
+  text-align: right;
+}
+.b-timetable_button-add {
+    float: right;
+    width: 150px;
+    background: #00ABA9;
+    border: 1px solid #00ABA9;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 10px 0px;
+}
+.b-timetable_button-export {
+    bottom: 20px;
+    left: 10px;
+    width: 130px;
+    padding: 5px 10px;
+    border: 1px solid #00ABA9;
+    color: #00ABA9;
+    background: white;
+    text-align: center;
+    margin: 10px 0px;
+}
+.b-timetable_button-import {
+    bottom: 10px;
+    left: 10px;
+    width: 130px;
+    padding: 5px 10px;
+    border: 1px solid #00ABA9;
+    color: #00ABA9;
+    background: white;
+    text-align: center;
+    margin: 0px;
+}
+.b-popup_overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    text-align: left
+}
+.b-popup_overlay:after {
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+    content: ''
+}
+.b-popup_day-lecture, .b-popup_edit-lecture {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    left: 50%;
+    width: 600px;
+    margin-left: -300px;
+    background: white;
+    border: 1px solid #00ABA9;
+    box-shadow: 5px 5px 15px 5px #555;
+}
+.b-popup_header {
+    display: block;
+    background: #00ABA9;
+    height: 40px;
+    width: 100%;
+}
+.b-popup_img-cancel {
+  margin: 10px;
+  cursor: pointer;
+}
+.b-popup_form {
+  padding: 40px 40px 100px 40px;
+}
+.b-popup_text {
+    width: 120px;
+  
+    display: inline-block;
+    text-align: right;
+    margin: 5px;
+    vertical-align: top;
+}
+.b-popup_text.time {
+    width: 60px
+}
+.b-popup_input {
+    background: #eee;
+    border: none;
+    padding: 2px;
+}
+.b-popup_input.width {
+    width: 318px;
+}
+.b-popup_save {
+    float: right;
+    margin-right: 68px;
+    margin-top: 20px;
+    background: #00ABA9;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.b-day-lecture {
+  position: relative;
+  width: 500px;
+  margin: 40px auto;
+  min-height: 100px;
+  border: 1px solid #EEE;
+  padding: 10px;
+}
+.b-day-lecture_header {
+  display: block;
+  height: 40px;
+  background: #00ABA9;
+}
+.b-day-lecture_img-cancel {
+    margin: 10px;
+  
+    cursor: pointer;
+}
+.b-day-lecture_lectures {
+  min-height: 200px;
+  max-height: 600px;
+}
+.b-day-lecture_delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 13px;
+  height: 13px;
+  margin: 5px 5px 0 0;
+  background: url("delete.png");
+}
+.b-day-lecture_delete:hover {
+  background: url("delete-hover.png");
+}
+.b-day-lecture_day {
+  min-height: 20px;
+  padding: 5px;
+  background: red;
+}
+.b-day-lecture_time {
+    float: left;
+
+    width: 50px;
+}
+.b-day-lecture_theme {
+    float: left;
+
+    width: 430px;
+    margin-left: 20px;
+}
+.b-day-lecture_thesis {
+    float: right;
+
+}
+.b-day-lecture_presenter {
+    clear: both;
+
+}
+.b-day-lecture_presentation {
+
+}
+.b-day-lecture_button {
+  
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 0;
+    background: white;
+    border-top: 1px solid #EEE;
+    border-left: 1px solid #eee;
+    border-right: none;
+    border-bottom: none;
+    cursor: pointer;
+}
+.b-day-lecture_button:hover {
+   background: #eee; 
+}
+
+.lectures {
+  display: block;
+  text-align: left;
+  font-size: 12px;
+  overflow: hidden;
+  padding: 5px;
+}
+.color {
+  color: white;
+  background: #00ABA9;
+}
