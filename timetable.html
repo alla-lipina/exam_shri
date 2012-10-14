@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <title>Exam Yandex</title>
   <link type="text/css"  rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
-  <link rel="stylesheet" href="style.css" />
-  <link type="text/css" href="jquery.jscrollpane.css" rel="stylesheet" media="all" />  
-  <link type="text/css" href="jquery.ui.timepicker.css" rel="stylesheet" media="all" />  
-  <script type="text/javascript" src="modernizr.js"></script>
-  
+  <link rel="stylesheet" href="css/style.css" />
+  <link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+  <link type="text/css" href="css/jquery.ui.timepicker.css" rel="stylesheet" media="all" />
+  <link type="text/css" href="css/codemirror.css" rel="stylesheet" />
+  <script type="text/javascript" src="lib/modernizr.js"></script>
 
 </head>
 <body>
@@ -39,15 +39,15 @@
 
     <script id="day-template" type="text/x-handlebars-template">
     <div class="b-popup_day-lecture">
-      <span class="b-day-lecture_header"><img src="cancel.png" alt="cancel" class="b-day-lecture_img-cancel"/> {{this.date}}</span>
+      <span class="b-day-lecture_header"><img src="img/cancel.png" alt="cancel" class="b-day-lecture_img-cancel"/> {{this.date}}</span>
       <div class="b-day-lecture_lectures scroll-pane">
       {{#each lectures}}
       <div class="b-day-lecture">
         <div class="b-day-lecture_delete" data-lecture-id="{{this.id}}"></div>
         <div class="b-day-lecture_time">{{this.time}}</div>
         <div class="b-day-lecture_theme">{{this.theme}}</div>
-        <div class="b-day-lecture_thesis">{{this.thesis}}</div>
         <div class="b-day-lecture_presenter">{{this.presenter}}</div>
+        <div class="b-day-lecture_thesis">{{this.thesis}}</div>
         <div class="b-day-lecture_presentation">{{this.presentation}}</div>
         <button class="b-day-lecture_button" data-lecture-id="{{this.id}}">edit</button>
       </div>
@@ -59,7 +59,7 @@
     <div id='edit-lecture-form' class='b-popup_overlay' style="display:none">
       <div class="b-popup_edit-lecture">
         <span class='b-popup_header'>
-          <img src="cancel.png" alt="cancel" class="b-popup_img-cancel"/>
+          <img src="img/cancel.png" alt="cancel" class="b-popup_img-cancel"/>
         </span>
         <form class='b-popup_form'>
           <input type="hidden" name="id" value="" class="field"/>
@@ -88,10 +88,10 @@
     <div id='import-form' class='b-popup_overlay' style="display:none">
       <div class="b-popup_import">
         <span class='b-popup_header'>
-          <img src="cancel.png" alt="cancel" class="b-popup_img-cancel"/>
+          <img src="img/cancel.png" alt="cancel" class="b-popup_img-cancel"/>
         </span>
         <form class='b-popup_form'>
-          <input type="text" placeholder="json представление расписания" name="json" value="" class="b-popup_input width field"/>
+          <textarea type="text"  name="json" class="b-popup_input width field"></textarea>
           <br>
           <input type="button" value="СОХРАНИТЬ" class='b-popup_save submit'/>
         </form>
@@ -105,29 +105,31 @@
     <div class="b-timetable_button-import">Импортировать</div>
   </div>
 
-  <script src="jquery.min.js"></script>
+  <script src="lib/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
   <script src="http://cloud.github.com/downloads/wycats/handlebars.js/handlebars-1.0.rc.1.js"></script>
 
-  <script src="json2.js"></script>
-  <script src="lectures.js"></script>
-  <script src="grid.js"></script>
-  <script src="lecture_cell.js"></script>
-  <script src="jquery.ui.timepicker.js"></script>
+  <script src="lib/json2.js"></script>
+  <script src="lib/lectures.js"></script>
+  <script src="lib/grid.js"></script>
+  <script src="lib/lecture_cell.js"></script>
+  <script src="lib/jquery.ui.timepicker.js"></script>
 
-  <script type="text/javascript" src="jquery.mousewheel.js"></script>
-  <script src="jquery.jscrollpane.min.js"></script>
+  <script type="text/javascript" src="lib/jquery.mousewheel.js"></script>
+  <script src="lib/jquery.jscrollpane.min.js"></script>
 
-  <script src="jquery.validate.min.js" type="text/javascript"></script>
-  <script type="text/javascript" src="jquery.ui.datepicker.validation.min.js"></script>
-  <script src="validation.js"></script>
-
+  <script src="lib/jquery.validate.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="lib/jquery.ui.datepicker.validation.min.js"></script>
+  <script src="lib/validation.js"></script>
+  <script type="text/javascript" src="lib/codemirror.js"></script>
+  <script type="text/javascript" src="lib/javascript.js"></script>
 
   <script>
 
    GRID.init($('#timetable-template'));
    LECTURES.init();
    LECTURES.load($('#lecture-thumb-template'));
+
    $('.scroll-pane').jScrollPane(); //todo remove this
    
    $(".input-date").datepicker({ 
@@ -136,7 +138,7 @@
       $(input).after($(input).datepicker('widget'));
     }
     }).val();;
-   $(".input-time").timepicker({ 
+    $(".input-time").timepicker({ 
     beforeShow: function(input, obj) {
       $(input).after($(input).datepicker('widget'));
     }

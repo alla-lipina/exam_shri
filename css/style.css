@@ -1,5 +1,6 @@
 body {
   font: 16px Helvetica;
+  color: #555;
   background: #eee;
 }
 * {
@@ -26,13 +27,13 @@ body {
   height: 25px;
   line-height: 25px;
   color: #00ABA9;
-  background: url('delete.png') no-repeat 125px center;
+  background: url('img/delete.png') no-repeat 125px center;
   border: 1px solid #00ABA9;
   padding: 0 10px;
 }
 .b-timetable_delete-all:hover {
   color: #FA7474;
-  background: url('delete-hover.png') no-repeat 125px center;
+  background: url('img/delete-hover.png') no-repeat 125px center;
   border: 1px solid #FA7474;
 }
 .b-timetable_row {
@@ -68,6 +69,7 @@ body {
 }
 .work-day {
     background: #00ABA9;
+    cursor: pointer;
 }
 .work-day span {
     color:white;
@@ -90,6 +92,10 @@ body {
     margin: 10px 0px;
     text-align: center;
 }
+.b-timetable_button-add:hover {
+    background: #eee;
+    color: #00ABA9;
+}
 .b-timetable_button-export {
     bottom: 20px;
     left: 10px;
@@ -100,6 +106,10 @@ body {
     background: white;
     text-align: center;
     margin: 10px 0px;
+    cursor: pointer;
+}
+.b-timetable_button-export:hover, .b-timetable_button-import:hover {
+    background: #eee;
 }
 .b-timetable_button-import {
     bottom: 10px;
@@ -111,6 +121,7 @@ body {
     background: white;
     text-align: center;
     margin: 0px;
+    cursor: pointer;
 }
 .b-popup_overlay {
     position: fixed;
@@ -199,6 +210,15 @@ body {
     box-shadow: 5px 5px 15px 5px #555;
     background: white;
 }
+.b-popup_import .b-popup_input {
+    width: 520px;
+    min-height: 100px;
+    padding: 0px;
+}
+.b-popup_import .b-popup_save {
+    margin-right: 0px;
+    
+}
 
 .b-day-lecture {
   position: relative;
@@ -206,7 +226,7 @@ body {
   margin: 40px auto;
   min-height: 100px;
   border: 1px solid #EEE;
-  padding: 10px;
+  padding: 20px 10px 30px;
 }
 .b-day-lecture_header {
   display: block;
@@ -229,10 +249,10 @@ body {
   width: 13px;
   height: 13px;
   margin: 5px 5px 0 0;
-  background: url("delete.png");
+  background: url("img/delete.png");
 }
 .b-day-lecture_delete:hover {
-  background: url("delete-hover.png");
+  background: url("img/delete-hover.png");
 }
 .b-day-lecture_day {
   min-height: 20px;
@@ -240,25 +260,46 @@ body {
   background: red;
 }
 .b-day-lecture_time {
-    float: left;
 
-    width: 50px;
+    display: inline-block;
+
+    vertical-align: top;
+
+    width: 60px;
+    color: #aaa;
 }
 .b-day-lecture_theme {
-    float: left;
 
-    width: 430px;
-    margin-left: 20px;
+    display: inline-block;
+
+    vertical-align: top;
+
+    width: 400px;
+    
+    font-weight: bold;
 }
 .b-day-lecture_thesis {
-    float: right;
 
+    display: block;
+
+    margin-left: 60px;
+    font-size: 90%;
 }
 .b-day-lecture_presenter {
-    clear: both;
 
+    display: block;
+
+    text-align: right;
+
+    font-style: italic;
+    color: #aaa;
 }
 .b-day-lecture_presentation {
+
+    text-decoration: underline;
+    
+
+    text-align: right;
 
 }
 .b-day-lecture_button {
