@@ -248,6 +248,12 @@ body {
   height: 40px;
   background: #00ABA9;
 }
+.b-day-lecture_header-date {
+  float: right;
+  margin: 10px;
+  text-align: right;
+  color: white;
+}
 .b-day-lecture_img-cancel {
   margin: 10px;
   cursor: pointer;

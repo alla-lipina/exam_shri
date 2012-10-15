@@ -25,7 +25,6 @@
           <div class="b-timetable_day scroll-pane {{this.class}}">
               <span class="b-timetable_date caption">{{this.caption}}</span>
           </div>
-
           {{/each}}
       </div>
       {{/each}}
@@ -39,7 +38,7 @@
 
     <script id="day-template" type="text/x-handlebars-template">
     <div class="b-popup_day-lecture">
-      <span class="b-day-lecture_header"><img src="img/cancel.png" alt="cancel" class="b-day-lecture_img-cancel"/> {{this.date}}</span>
+      <span class="b-day-lecture_header"><img src="img/cancel.png" alt="cancel" class="b-day-lecture_img-cancel"/><span class="b-day-lecture_header-date">{{day}}</span></span>
       <div class="b-day-lecture_lectures scroll-pane">
       {{#each lectures}}
       <div class="b-day-lecture">
