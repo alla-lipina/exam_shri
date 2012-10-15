@@ -104,6 +104,22 @@
     <div class="b-timetable_button-import">Импортировать</div>
   </div>
 
+  <script id="print-template" type="text/x-handlebars-template">
+    <div class="b-print">
+      {{#each context}}
+      <span class="b-print_date">{{this.date}}</span>
+      
+        <div class="b-print_lecture">
+          <span class="b-print_time">{{this.time}}</span>
+          <span class="b-print_theme">{{this.theme}}</span>
+          <span class="b-print_presenter">({{this.presenter}})</span>
+          <span class="b-print_thesis">{{this.thesis}}</span>
+          <span class="b-print_presentation">{{this.presentation}}</span>
+        </div>
+        {{/each}}
+    </div>
+</script>
+
   <script src="lib/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
   <script src="http://cloud.github.com/downloads/wycats/handlebars.js/handlebars-1.0.rc.1.js"></script>
@@ -126,15 +142,15 @@
 
   <script>
 
-   GRID.init($('#timetable-template'));
-   LECTURES.init();
-   LECTURES.load($('#lecture-thumb-template'));
+  GRID.init($('#timetable-template'));
+  LECTURES.init();
+  LECTURES.load($('#lecture-thumb-template'));
 
-/*  PRINT.init();*/
+  PRINT.init();
 
-   $('.scroll-pane').jScrollPane(); //todo remove this
-   
-   $(".input-date").datepicker({ 
+    $('.scroll-pane').jScrollPane(); //todo remove this
+
+    $(".input-date").datepicker({ 
     dateFormat: 'dd-mm',
     beforeShow: function(input, obj) {
       $(input).after($(input).datepicker('widget'));
