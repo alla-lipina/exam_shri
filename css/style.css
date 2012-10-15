@@ -345,3 +345,47 @@ div.ui-datepicker, div.ui-timepicker {
   left: 175px !important;
   top: 103px !important;
 }
+
+
+/* Print version */
+.b-print {
+  font-size: 12pt;
+  width: 600px;
+  margin: 40px auto;
+}
+.b-print_date {
+  color: white;
+  background: #00ABA9;
+  padding: 5px 15px;
+}
+.b-print_lecture {
+  background: white;
+  margin: 20px 0px;
+  padding: 10px 15px;
+}
+.b-print_time {
+  display: inline-block;
+  vertical-align: top;
+  width: 60px;
+}
+.b-print_theme {
+  display: inline-block;
+  vertical-align: top;
+}
+.b-print_thesis {
+  display: block;
+  margin-left: 60px;
+}
+.b-print_presenter {
+  display: inline-block;
+  vertical-align: top;
+}
+.b-print_presentation {
+  display: block;
+  text-align: right;
+  text-decoration: underline;
+}
+
+
+
+
