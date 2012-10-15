@@ -9,7 +9,6 @@
   <link type="text/css" href="css/jquery.ui.timepicker.css" rel="stylesheet" media="all" />
   <link type="text/css" href="css/codemirror.css" rel="stylesheet" />
   <script type="text/javascript" src="lib/modernizr.js"></script>
-
 </head>
 <body>
 
@@ -17,6 +16,7 @@
 
   <div class="b-timetable">
     <script id="timetable-template" type="text/x-handlebars-template">
+    <div class="b-timetable_print">Версия для печати</div>
     <div class="b-timetable_delete-all">удалить всё</div>
       {{#each weeks}}
       <div class="b-timetable_row">
@@ -113,6 +113,7 @@
   <script src="lib/lectures.js"></script>
   <script src="lib/grid.js"></script>
   <script src="lib/lecture_cell.js"></script>
+  <script src="lib/print.js"></script>
   <script src="lib/jquery.ui.timepicker.js"></script>
 
   <script type="text/javascript" src="lib/jquery.mousewheel.js"></script>
@@ -129,6 +130,8 @@
    GRID.init($('#timetable-template'));
    LECTURES.init();
    LECTURES.load($('#lecture-thumb-template'));
+
+/*  PRINT.init();*/
 
    $('.scroll-pane').jScrollPane(); //todo remove this
    
