@@ -5,9 +5,6 @@ var PRINT = (function(){
     $('.b-timetable_print').live('click',function(){
       $(".b-timetable").hide();
       print_lectures()
-    });
-    $('.b-print__back').live('click', function(){
-      $(".b-timetable").show();
     })
   }
 

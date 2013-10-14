@@ -1,4 +1,4 @@
-var VALIDATION = (function(){  
+VALIDATION = (function(){  
   return {
     init : function(){
       $('#edit-lecture-form').validate({ 

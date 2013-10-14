@@ -14,11 +14,11 @@ var GRID = (function()
   };
 
   init = function (template){
-      var  context = 
+      var context = 
           {
-            weeks: ['0 неделя', '1 неделя', '2 неделя', '3 неделя', '4 неделя', 'Экза мен'].map(function(caption, loop){
+            weeks: ['Wel come', '1 неделя', '2 неделя', '3 неделя', '4 неделя', 'Экза мен'].map(function(caption, loop){
               start_date = new Date(2012,8,10)
-              start_date.setDate((start_date).getDate() + 7 * loop)
+              start_date.setDate((new Date(2012, 8, 10)).getDate() + 7 * loop)
             return {
               week: caption, 
               days: week(start_date)
@@ -32,4 +32,5 @@ var GRID = (function()
   return {
     init : init
   }
-}());
+}()
+)
